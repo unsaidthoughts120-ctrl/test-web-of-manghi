@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SAIRADEVS | MESSAGE | ANONYMOUS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ——————————————— ROOT VARIABLES ——————————————— */
+    :root {
+      --bg-1: #f8fafc;
+      --bg-2: #ffffff;
+      --panel-glass: rgba(255,255,255,0.8);
+      --accent-1: #2563eb;
+      --accent-2: #3b82f6;
+      --accent-3: #10b981;
+      --accent-4: #ef4444;
+      --muted: #64748b;
+      --muted-light: #94a3b8;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --text: #1e293b;
+      --text-light: #475569;
+      --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --radius-lg: 12px;
+      --radius-md: 8px;
+      --radius-sm: 6px;
+      --max-width: 1200px;
+      --mono: 'Rajdhani', 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --transition: all 0.2s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { height: 100%; overflow-x: hidden; }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg-1);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 24px;
+      overflow: auto;
+    }
+
+    .app {
+      width: 100%;
+      max-width: var(--max-width);
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .app { grid-template-columns: 1fr; padding: 0 12px; }
+    }
+
+    .control {
+      background: var(--bg-2);
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+    }
+
+    .control:hover { box-shadow: var(--card-shadow-hover); }
+
+    .header {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-family: var(--mono);
+    }
+
+    .title h1 { font-size: 20px; font-family: var(--mono); color: var(--accent-1); }
+    .title p { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+    form { display: flex; flex-direction: column; gap: 16px; }
+
+    textarea, input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--bg-2);
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    textarea { min-height: 120px; resize: vertical; }
+    input:focus, textarea:focus { border-color: var(--accent-1); }
+
+    .form-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .form-row > div { flex: 1; min-width: 150px; }
+
+    .btn {
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      color: white;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn.alt {
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      color: var(--text-light);
+    }
+
+    .stats {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .stat {
+      flex: 1;
+      padding: 16px;
+      border: 1px solid var(--border);
+      background: var(--bg-2);
+      border-radius: var(--radius-md);
+      text-align: left;
+    }
+
+    .num { font-size: 24px; font-family: var(--mono); color: var(--accent-1); }
+
+    .side { display: flex; flex-direction: column; gap: 20px; }
+
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      padding: 12px 10px;
+      background: var(--bg-1);
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    tbody td { padding: 12px 10px; border-bottom: 1px solid var(--border); }
+
+    /* ——————————————— NOTIFICATION ——————————————— */
+    .notification {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      padding: 14px 18px;
+      background: white;
+      border-left: 4px solid var(--accent-1);
+      border-radius: var(--radius-md);
+      box-shadow: var(--card-shadow-hover);
+      transform: translateX(120%);
+      transition: .3s;
+      max-width: 320px;
+      z-index: 1000;
+    }
+    .notification.show { transform: translateX(0); }
+  </style>
+</head>
+<body>
+
+  <main class="app" role="main">
+    <section class="control">
+      <div class="header">
+        <div class="logo">AS</div>
+        <div class="title">
+          <h1>MANGHI PAST DASHBOARD</h1>
+          <p>PAST ANONYMOUS MESSAGE</p>
+        </div>
+      </div>
+
+      <form id="submitForm" autocomplete="off">
+        <div class="form-group">
+          <label class="small">MESSAGE BOX ( SENT MESSAGE HERE )</label>
+          <textarea id="cookie" placeholder="Type anonymous message here" required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="small">USERNAME</label>
+            <input id="username" type="text" placeholder="SAIRA" required />
+          </div>
+          <div class="form-group">
+            <label class="small">DATE</label>
+            <input id="dateField" type="text" placeholder="12/7/2025" required />
+          </div>
+          <div class="form-group">
+            <label class="small">TIME</label>
+            <input id="timeField" type="text" placeholder="12:00 PM" required />
+          </div>
+        </div>
+
+        <div class="controls">
+          <button type="submit" class="btn" id="submitBtn">
+            SENT
+          </button>
+
+          <button type="button" class="btn alt" id="stopBtn">
+            STOP
+          </button>
+
+          <div id="submitStatus" class="status"></div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="num" id="stat-active">0</div>
+            <div class="lbl">ACTIVE USER</div>
+          </div>
+          <div class="stat">
+            <div class="num" id="stat-sent">0</div>
+            <div class="lbl">TOTAL MESSAGE</div>
+          </div>
+          <div class="stat">
+            <div class="num" id="stat-target">0</div>
+            <div class="lbl">TOTAL VISIT</div>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <aside class="side">
+      <div class="card">
+        <div class="live-head">
+          <h2>User's</h2>
+          <div class="muted">Auto refresh</div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Date</th>
+                <th style="text-align:right">Time</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <tr>
+                <td colspan="4" style="text-align:center;color:var(--muted);padding:18px">Loading…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card" style="display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div style="font-weight:700;color:var(--accent-1)">System Status</div>
+          <div class="muted" id="telemetry">Last updated: —</div>
+        </div>
+        <div style="text-align:right">
+          <div class="muted" style="font-size:13px">Version</div>
+          <div style="font-weight:600">1.0.0</div>
+        </div>
+      </div>
+    </aside>
+  </main>
+<script src="/scripts/main.js" defer></script>
+</body>
+</html>
