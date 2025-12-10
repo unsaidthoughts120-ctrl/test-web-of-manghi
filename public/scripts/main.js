@@ -12,7 +12,7 @@
     authDomain: "sairadevs.firebaseapp.com",
     databaseURL: "https://sairadevs-default-rtdb.firebaseio.com", // e.g. https://your-project-id-default-rtdb.firebaseio.com
     projectId: "sairadevs",
-    storageBucket: "sairadevs.firebasestorage.app",
+    storageBucket: "sairadevs.appspot.app",
     messagingSenderId: "496896711495",
     appId: "1:496896711495:web:8f540a1defe94e3b738a62"
   };
